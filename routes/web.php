@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/test', function () {
-    return view('test');
-});
+/**
+ * add Todo
+ */
+
+Route::get('/folders/{id}/tasks', 'TaskController@index')->name('tasks.index');
