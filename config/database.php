@@ -35,6 +35,14 @@ return [
 
     'connections' => [
 
+        //testing for test
+        //今回はdocker-compose.ymlでDB_CONNECTIONを設定しており、そちらがenvよりも優先して設定されているため、phpunit.xmlで切り替えられないので使いません。
+        'testing' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
@@ -123,7 +131,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
