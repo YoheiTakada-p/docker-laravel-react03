@@ -43,7 +43,7 @@ class TaskTest extends TestCase
      */
     public function due_date_should_not_be_past()
     {
-        $response = $this->post('folders/1/tasks/create', [
+        $response = $this->post('/folders/1/tasks/create', [
             'title' => 'Sample Task',
             'due_date' => Carbon::yesterday()->format('Y/m/d'), //error
         ]);

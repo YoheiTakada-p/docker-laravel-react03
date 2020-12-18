@@ -9,9 +9,9 @@ class Task extends Model
 {
     //Status replace by text and add status_label and status_color
     const STATUS = [
-        1 => ['label' => 'Unprocessed', 'class' => 'label-danger'],
-        2 => ['label' => 'In progress', 'class' => 'label-info'],
-        3 => ['label' => 'Done', 'class' => ''],
+        1 => ['label' => 'unprocessed', 'class' => 'label-danger'],
+        2 => ['label' => 'in progress', 'class' => 'label-info'],
+        3 => ['label' => 'done', 'class' => ''],
     ];
 
     public function getStatusLabelAttribute()

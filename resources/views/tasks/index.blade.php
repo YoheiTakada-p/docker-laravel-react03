@@ -7,7 +7,7 @@
             <nav class="panel panel-default">
                 <div class="panel-heading">Folders</div>
                 <div class="panel-body">
-                    <a href="#" class="btn btn-default btn-block">
+                    <a href="{{ route('folders.create') }}" class="btn btn-default btn-block">
                         Add Folder
                     </a>
                 </div>
@@ -48,7 +48,7 @@
                                 <span class="label {{ $task->status_class }}">{{ $task->status_label }}</span>
                             </td>
                             <td>{{ $task->formatted_due_date }}</td>
-                            <td><a href="#">Edit</a></td>
+                            <td><a href="{{ route('tasks.edit', ['id' => $task->folder_id, 'task_id' => $task->id])}}">Edit</a></td>
                         </tr>
                         @endforeach
                     </tbody>

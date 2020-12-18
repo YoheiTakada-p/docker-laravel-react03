@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('styles')
-@extends('share.flatpicker.styles')
+@include('share.flatpicker.styles')
 @endsection
 
 @section('content')
@@ -50,5 +50,5 @@
 @endsection
 
 @section('scripts')
-@extends('share.flatpicker.scripts')
+@include('share.flatpicker.scripts')
 @endsection
