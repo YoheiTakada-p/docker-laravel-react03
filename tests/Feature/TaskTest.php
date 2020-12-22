@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Carbon\Carbon;
+use App\User;
 
 class TaskTest extends TestCase
 {
@@ -20,6 +21,7 @@ class TaskTest extends TestCase
         parent::setUp();
 
         // テストケース実行前にフォルダデータを作成する
+        $this->seed('UsersTableSeeder');
         $this->seed('FoldersTableSeeder');
     }
     /**
@@ -28,7 +30,9 @@ class TaskTest extends TestCase
      */
     public function due_date_should_be_date()
     {
-        $response = $this->post('/folders/1/tasks/create', [
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->post('/folders/1/tasks/create', [
             'title' => 'Sample task',
             'due_date' => 123, //error
         ]);
@@ -43,7 +47,9 @@ class TaskTest extends TestCase
      */
     public function due_date_should_not_be_past()
     {
-        $response = $this->post('/folders/1/tasks/create', [
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->post('/folders/1/tasks/create', [
             'title' => 'Sample Task',
             'due_date' => Carbon::yesterday()->format('Y/m/d'), //error
         ]);

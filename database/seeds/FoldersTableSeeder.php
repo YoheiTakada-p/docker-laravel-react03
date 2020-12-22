@@ -25,6 +25,5 @@ class FoldersTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ]);
         }
-        return $user;
     }
 }

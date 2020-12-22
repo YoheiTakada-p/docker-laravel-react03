@@ -13,9 +13,9 @@ class AddUserIdToFolders extends Migration
      */
     public function up()
     {
+        // !!注意!! phpunitでSQLiteをDB指定しています。SQLiteの仕様上、NOT NULL制約の追加はできないためuser_idにnullableをセットしています。
         Schema::table('folders', function (Blueprint $table) {
-            $table->bigInteger('user_id')->unsigned();
-
+            $table->bigInteger('user_id')->nullable()->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

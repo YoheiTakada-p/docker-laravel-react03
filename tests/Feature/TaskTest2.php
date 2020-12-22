@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Carbon\Carbon;
+use App\User;
 
 class TaskTest2 extends TestCase
 {
@@ -20,6 +21,7 @@ class TaskTest2 extends TestCase
         parent::setUp();
 
         // テストケース実行前にフォルダデータを作成する
+        $this->seed('UsersTableSeeder');
         $this->seed('FoldersTableSeeder');
         $this->seed('TasksTableSeeder');
     }
@@ -29,8 +31,9 @@ class TaskTest2 extends TestCase
      */
     public function status_should_be_within_defined_numbers()
     {
+        $user = factory(User::class)->create();
 
-        $response = $this->post('/folders/1/tasks/1/edit', [
+        $response = $this->actingAs($user)->post('/folders/1/tasks/1/edit', [
             'title' => 'Sample task',
             'due_date' => Carbon::today()->format('Y/m/d'),
             'status' => 999,
